@@ -7,27 +7,17 @@ var seedDB = require('./seeds');
 // Var comment = require('./models/comment');
 // Var comment = require('./models/user');
 
-seedDB();
+//Setup
 mongoose.connect('mongodb://localhost/yelp_camp', { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
 
-// Campground.create(
-//     {
-//         name: 'Mount Diablo', 
-//         image: 'https://www.savemountdiablo.org/wp-content/uploads/2017/12/Hein-Scott-D3A23632-early_spring_16x24@300-16Glossy.jpg',
-//         description: "This is Mount Diablo"
-        
-//     }, function(err, campground){
-//         if(err){
-//             console.log(err);
-//         } else {
-//             console.log("Newly Created Campground: ");
-//             console.log(campground);
-//         }
-// });
+//Add data into the database
+seedDB();
 
 
+
+//Routing
 app.get('/', function(req, res){
     res.render('landing');
 })
@@ -43,7 +33,7 @@ app.get('/campgrounds', function(req, res){
     });
 });
 
-//Create Route - Add  new campground to DB
+//Create Route - Add new campground to DB
 app.post('/campgrounds', function(req, res){
     var name = req.body.name;
     var image =  req.body.image;
@@ -65,15 +55,19 @@ app.get('/campgrounds/new', function(req, res){
 
 //Show Route - Show more info
 app.get('/campgrounds/:id', function(req,res){
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground){
         if(err){
             console.log('error');
         } else{
-            res.render("show", {campground: foundCampground});     
+            console.log(foundCampground);
+            res.render('show', {campground: foundCampground});     
         }
     });
 });
 
+
+
+//Starting server
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log('Server has started.');
 });
