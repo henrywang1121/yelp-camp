@@ -1,0 +1,25 @@
+body {
+    background: #F8F8FF;
+}
+
+.thumbnail img {
+    width: 100%;
+    
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+
+.navbar {
+    background: black;
+}
+
+#home, #navigation li a {
+    color: white;
+}
