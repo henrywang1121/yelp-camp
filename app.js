@@ -2,7 +2,10 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 var Campground = require('./models/campground');
+var User = require('./models/user');
 var seedDB = require('./seeds');
 var Comment = require('./models/comment');
 // var comment = require('./models/user');
@@ -17,8 +20,10 @@ app.use(express.static(__dirname + '/public'));
 seedDB();
 
 
+//=============
+//Routes
+//=============
 
-//Routing
 app.get('/', function(req, res){
     res.render('landing');
 })
