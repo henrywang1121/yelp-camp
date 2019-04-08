@@ -21,7 +21,7 @@ app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
 
 //Add data into the database
-seedDB();
+//seedDB();
 
 //Passport Config
 app.use(require('express-session')({

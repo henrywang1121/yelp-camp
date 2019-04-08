@@ -23,11 +23,11 @@ var data = [
 function seedDB(){
     //Remove all campgrounds
     Campground.remove({}, function(err){
-       if(err){
-           console.log(err);
-       } else{
+      if(err){
+          console.log(err);
+      } else{
         console.log('Campgrounds Removed!');    
-       }
+      }
         
         //add a few campgrounds
         data.forEach(function(seed){
@@ -54,8 +54,6 @@ function seedDB(){
             }); 
         });
     });
-    
-    //add a few comments
 }
 
 module.exports = seedDB;
