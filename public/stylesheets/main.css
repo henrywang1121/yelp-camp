@@ -1,5 +1,5 @@
 body {
-    background: #F8F8FF;
+    background: grey;
 }
 
 .thumbnail img {
@@ -17,7 +17,7 @@ body {
 
 
 .navbar {
-    background: black;
+    background: #1bb76e;
 }
 
 #home, #navigation li a {
